@@ -3,16 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { roomsData } from "@/models/hotelModel";
-import { Users, Wifi, Car } from "lucide-react";
+import { Users } from "lucide-react";
 
 export const RoomsPreview = () => {
   const featuredRooms = roomsData.slice(0, 2);
 
   return (
-    <section className="py-16 bg-muted/30">
+    <section className="py-16 bg-gradient-to-b from-amber-50/30 to-orange-50/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Rooms</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-amber-900">Our Rooms</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Comfortable accommodations designed with your comfort in mind
           </p>
@@ -20,19 +20,19 @@ export const RoomsPreview = () => {
 
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           {featuredRooms.map((room) => (
-            <Card key={room.id} className="overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+            <Card key={room.id} className="overflow-hidden border-amber-200 hover:shadow-lg transition-shadow">
+              <div className="h-48 bg-gradient-to-br from-amber-100 to-orange-100"></div>
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle>{room.type}</CardTitle>
+                    <CardTitle className="text-amber-900">{room.type}</CardTitle>
                     <CardDescription className="flex items-center gap-1 mt-1">
-                      <Users className="h-4 w-4" />
+                      <Users className="h-4 w-4 text-amber-600" />
                       Up to {room.max_guests} guests
                     </CardDescription>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold">€{room.price_per_night}</div>
+                    <div className="text-2xl font-bold text-amber-700">€{room.price_per_night}</div>
                     <div className="text-sm text-muted-foreground">per night</div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@ export const RoomsPreview = () => {
                   {room.features.slice(0, 3).map((feature) => (
                     <span
                       key={feature}
-                      className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md"
+                      className="px-2 py-1 bg-amber-100 text-amber-800 text-xs rounded-md"
                     >
                       {feature}
                     </span>
@@ -55,7 +55,7 @@ export const RoomsPreview = () => {
         </div>
 
         <div className="text-center">
-          <Button asChild>
+          <Button asChild className="bg-amber-600 hover:bg-amber-700">
             <Link to="/rooms">View All Rooms</Link>
           </Button>
         </div>
