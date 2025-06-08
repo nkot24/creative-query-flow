@@ -1,16 +1,19 @@
 
 import { Navigation } from "@/components/hotel/Navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Menu = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-amber-900">Restaurant Menu</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-amber-900">{t('menu.title')}</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Discover our delicious selection of local and international cuisine
+            {t('menu.subtitle')}
           </p>
         </div>
 
@@ -246,20 +249,20 @@ const Menu = () => {
 
         <div className="text-center mt-12">
           <p className="text-lg text-muted-foreground mb-4">
-            For reservations and special dietary requirements, please contact us
+            {t('menu.contact')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="tel:+37163207040" 
               className="inline-flex items-center justify-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
             >
-              Call Restaurant
+              {t('menu.callRestaurant')}
             </a>
             <a 
               href="/contact" 
               className="inline-flex items-center justify-center px-6 py-3 border border-amber-600 text-amber-600 rounded-lg hover:bg-amber-50 transition-colors"
             >
-              Contact Us
+              {t('menu.contactUs')}
             </a>
           </div>
         </div>
