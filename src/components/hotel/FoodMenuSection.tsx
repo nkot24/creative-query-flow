@@ -1,4 +1,7 @@
 
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+
 export const FoodMenuSection = () => {
   return (
     <section className="py-16 bg-gradient-to-b from-orange-50/20 to-amber-50/30">
@@ -11,12 +14,18 @@ export const FoodMenuSection = () => {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-amber-200">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-amber-200 mb-8">
             <img 
-              src="/lovable-uploads/food-menu.png" 
-              alt="Hotel Restaurant Menu" 
+              src="/lovable-uploads/597f0a1b-1d52-415a-b88b-582f52262c89.png" 
+              alt="Hotel Restaurant Menu Preview" 
               className="w-full h-auto"
             />
+          </div>
+          
+          <div className="text-center">
+            <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-700">
+              <Link to="/menu">View Full Menu</Link>
+            </Button>
           </div>
         </div>
       </div>
