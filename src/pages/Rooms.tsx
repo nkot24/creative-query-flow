@@ -5,17 +5,20 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { roomsData } from "@/models/hotelModel";
 import { Users } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Rooms = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Our Rooms</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('rooms.title')}</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose from our selection of comfortable and well-appointed rooms
+            {t('rooms.subtitle')}
           </p>
         </div>
 
@@ -29,12 +32,12 @@ const Rooms = () => {
                     <CardTitle>{room.type}</CardTitle>
                     <CardDescription className="flex items-center gap-1 mt-1">
                       <Users className="h-4 w-4" />
-                      Up to {room.max_guests} guests
+                      {t('common.upTo')} {room.max_guests} {t('common.guests')}
                     </CardDescription>
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold">€{room.price_per_night}</div>
-                    <div className="text-sm text-muted-foreground">per night</div>
+                    <div className="text-sm text-muted-foreground">{t('common.perNight')}</div>
                   </div>
                 </div>
               </CardHeader>
@@ -51,7 +54,7 @@ const Rooms = () => {
                   ))}
                 </div>
                 <Button asChild className="w-full">
-                  <Link to="/booking" state={{ selectedRoom: room }}>Book This Room</Link>
+                  <Link to="/booking" state={{ selectedRoom: room }}>{t('rooms.bookRoom')}</Link>
                 </Button>
               </CardContent>
             </Card>

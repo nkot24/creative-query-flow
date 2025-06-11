@@ -10,11 +10,13 @@ import { roomsData, type Room } from "@/models/hotelModel";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar, Users } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Booking = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const selectedRoom = location.state?.selectedRoom as Room | undefined;
   
   const [formData, setFormData] = useState({
@@ -31,8 +33,8 @@ const Booking = () => {
     e.preventDefault();
     console.log("Booking submitted:", formData);
     toast({
-      title: "Booking Submitted!",
-      description: "We will contact you shortly to confirm your reservation.",
+      title: t('booking.success'),
+      description: t('booking.successMessage'),
     });
     navigate("/");
   };
@@ -49,9 +51,9 @@ const Booking = () => {
       
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Book Your Stay</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('booking.title')}</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Complete the form below to reserve your room at Viesnīca Kandava
+            {t('booking.subtitle')}
           </p>
         </div>
 
@@ -59,20 +61,20 @@ const Booking = () => {
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
-                <CardTitle>Booking Information</CardTitle>
+                <CardTitle>{t('booking.info')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <Label htmlFor="roomSelect">Select Room</Label>
+                    <Label htmlFor="roomSelect">{t('booking.selectRoom')}</Label>
                     <Select value={formData.roomId} onValueChange={(value) => handleInputChange("roomId", value)}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Choose a room" />
+                        <SelectValue placeholder={t('booking.chooseRoom')} />
                       </SelectTrigger>
                       <SelectContent>
                         {roomsData.map((room) => (
                           <SelectItem key={room.id} value={room.id}>
-                            {room.type} - €{room.price_per_night}/night
+                            {room.type} - €{room.price_per_night}/{t('common.night')}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -83,7 +85,7 @@ const Booking = () => {
                     <div>
                       <Label htmlFor="checkIn" className="flex items-center gap-2">
                         <Calendar className="h-4 w-4" />
-                        Check-in Date
+                        {t('booking.checkIn')}
                       </Label>
                       <Input
                         id="checkIn"
@@ -96,7 +98,7 @@ const Booking = () => {
                     <div>
                       <Label htmlFor="checkOut" className="flex items-center gap-2">
                         <Calendar className="h-4 w-4" />
-                        Check-out Date
+                        {t('booking.checkOut')}
                       </Label>
                       <Input
                         id="checkOut"
@@ -111,7 +113,7 @@ const Booking = () => {
                   <div>
                     <Label htmlFor="guests" className="flex items-center gap-2">
                       <Users className="h-4 w-4" />
-                      Number of Guests
+                      {t('booking.guests')}
                     </Label>
                     <Select value={formData.guests} onValueChange={(value) => handleInputChange("guests", value)}>
                       <SelectTrigger>
@@ -120,7 +122,7 @@ const Booking = () => {
                       <SelectContent>
                         {[1, 2, 3, 4].map((num) => (
                           <SelectItem key={num} value={num.toString()}>
-                            {num} Guest{num > 1 ? 's' : ''}
+                            {num} {num === 1 ? t('booking.guest') : t('booking.guests_plural')}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -129,7 +131,7 @@ const Booking = () => {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="guestName">Full Name</Label>
+                      <Label htmlFor="guestName">{t('booking.fullName')}</Label>
                       <Input
                         id="guestName"
                         type="text"
@@ -139,7 +141,7 @@ const Booking = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="guestEmail">Email Address</Label>
+                      <Label htmlFor="guestEmail">{t('booking.email')}</Label>
                       <Input
                         id="guestEmail"
                         type="email"
@@ -151,7 +153,7 @@ const Booking = () => {
                   </div>
 
                   <div>
-                    <Label htmlFor="guestPhone">Phone Number</Label>
+                    <Label htmlFor="guestPhone">{t('booking.phone')}</Label>
                     <Input
                       id="guestPhone"
                       type="tel"
@@ -162,7 +164,7 @@ const Booking = () => {
                   </div>
 
                   <Button type="submit" className="w-full" size="lg">
-                    Submit Booking Request
+                    {t('booking.submit')}
                   </Button>
                 </form>
               </CardContent>
@@ -173,7 +175,7 @@ const Booking = () => {
             {selectedRoomData && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Booking Summary</CardTitle>
+                  <CardTitle>{t('booking.summary')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -184,17 +186,17 @@ const Booking = () => {
                     
                     <div className="border-t pt-4">
                       <div className="flex justify-between items-center">
-                        <span>Price per night:</span>
+                        <span>{t('booking.pricePerNight')}</span>
                         <span className="font-semibold">€{selectedRoomData.price_per_night}</span>
                       </div>
                       <div className="flex justify-between items-center mt-2">
-                        <span>Max guests:</span>
+                        <span>{t('booking.maxGuests')}</span>
                         <span>{selectedRoomData.max_guests}</span>
                       </div>
                     </div>
 
                     <div className="border-t pt-4">
-                      <h4 className="font-medium mb-2">Room Features:</h4>
+                      <h4 className="font-medium mb-2">{t('booking.roomFeatures')}</h4>
                       <div className="space-y-1">
                         {selectedRoomData.features.map((feature) => (
                           <div key={feature} className="text-sm text-muted-foreground">

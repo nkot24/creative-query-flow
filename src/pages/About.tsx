@@ -3,6 +3,7 @@ import { Navigation } from "@/components/hotel/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { hotelData } from "@/models/hotelModel";
 import { Wifi, Car, Coffee, Users, Shield, Clock, MapPin, Award, Heart } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const amenityIcons: { [key: string]: any } = {
   "Free Wi-Fi": Wifi,
@@ -14,34 +15,31 @@ const amenityIcons: { [key: string]: any } = {
 };
 
 const About = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">About {hotelData.name}</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('about.title')}</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover the charm and history of our hotel in the heart of Kandava
+            {t('about.subtitle')}
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Our Story</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('about.story.title')}</h2>
             <p className="text-muted-foreground mb-4">
-              {hotelData.description} Our historic building has been carefully restored 
-              to preserve its original character while providing all modern conveniences.
+              {hotelData.description} {t('about.story.p1')}
             </p>
             <p className="text-muted-foreground mb-4">
-              For generations, we have welcomed travelers from around the world, 
-              sharing the beauty and tranquility of Kandava. Our commitment to 
-              exceptional service and authentic Latvian hospitality remains unchanged.
+              {t('about.story.p2')}
             </p>
             <p className="text-muted-foreground">
-              Whether you're exploring the local culture, conducting business, or 
-              simply seeking a peaceful retreat, we provide a warm welcome and 
-              comfortable accommodations for every guest.
+              {t('about.story.p3')}
             </p>
           </div>
           
@@ -52,11 +50,11 @@ const About = () => {
           <Card>
             <CardHeader className="text-center">
               <MapPin className="h-8 w-8 text-primary mx-auto mb-2" />
-              <CardTitle>Prime Location</CardTitle>
+              <CardTitle>{t('home.about.location.title')}</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-muted-foreground">
-                Located in historic center of Kandava, walking distance to main attractions
+                {t('home.about.location.description')}
               </p>
             </CardContent>
           </Card>
@@ -64,11 +62,11 @@ const About = () => {
           <Card>
             <CardHeader className="text-center">
               <Award className="h-8 w-8 text-primary mx-auto mb-2" />
-              <CardTitle>Quality Service</CardTitle>
+              <CardTitle>{t('home.about.quality.title')}</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-muted-foreground">
-                Dedicated staff committed to making your stay comfortable and memorable
+                {t('home.about.quality.description')}
               </p>
             </CardContent>
           </Card>
@@ -76,11 +74,11 @@ const About = () => {
           <Card>
             <CardHeader className="text-center">
               <Heart className="h-8 w-8 text-primary mx-auto mb-2" />
-              <CardTitle>Authentic Experience</CardTitle>
+              <CardTitle>{t('home.about.authentic.title')}</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-muted-foreground">
-                Experience genuine Latvian hospitality in a beautifully preserved setting
+                {t('home.about.authentic.description')}
               </p>
             </CardContent>
           </Card>
@@ -88,7 +86,7 @@ const About = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Hotel Amenities</CardTitle>
+            <CardTitle>{t('home.about.amenities')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-3 gap-4">
