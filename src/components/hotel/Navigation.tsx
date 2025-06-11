@@ -25,8 +25,15 @@ export const Navigation = () => {
     <nav className="bg-card/95 backdrop-blur-sm border-b border-amber-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-xl font-bold text-amber-800 hover:text-amber-900 transition-colors">
-            Viesnīca Kandava
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <img 
+              src="/lovable-uploads/19124d70-e714-490d-9025-e31276cbf111.png" 
+              alt="Kandava Viesnīca Logo" 
+              className="h-10 w-auto"
+            />
+            <span className="text-xl font-bold text-amber-800 hover:text-amber-900 transition-colors">
+              Viesnīca Kandava
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
