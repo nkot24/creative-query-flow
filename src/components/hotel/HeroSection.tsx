@@ -20,15 +20,6 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
       
-      {/* Hotel Logo */}
-      <div className="absolute top-8 left-8 z-20">
-        <img 
-          src="/lovable-uploads/19124d70-e714-490d-9025-e31276cbf111.png" 
-          alt="Kandava Viesnīca Logo" 
-          className="h-20 md:h-24 w-auto"
-        />
-      </div>
-      
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
         <div className="max-w-2xl text-white">
