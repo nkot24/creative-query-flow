@@ -16,8 +16,8 @@ export const FoodMenuSection = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-amber-200 mb-8">
             <img 
-              src="/lovable-uploads/597f0a1b-1d52-415a-b88b-582f52262c89.png" 
-              alt="Hotel Restaurant Menu Preview" 
+              src="/lovable-uploads/9b6752cc-f06c-4795-9e6c-3b15a38b8b6a.png" 
+              alt="Hotel Restaurant Interior" 
               className="w-full h-auto"
             />
           </div>
