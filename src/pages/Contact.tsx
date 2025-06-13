@@ -1,9 +1,5 @@
-
 import { Navigation } from "@/components/hotel/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { hotelData } from "@/models/hotelModel";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -11,135 +7,103 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const Contact = () => {
   const { t } = useLanguage();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Contact form submitted");
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">{t('contact.title')}</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            {t("contact.title")} 
+          </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t('contact.subtitle')}
+            {t("contact.subtitle")} 
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-2xl font-bold mb-6">{t('contact.getInTouch')}</h2>
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-primary" />
-                    {t('contact.address')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{hotelData.address}</p>
-                </CardContent>
-              </Card>
+        {/* Cards in full width stack */}
+        <div className="space-y-12">
+          <h2 className="text-2xl font-bold mb-6">
+            {t("contact.getInTouch")} 
+          </h2>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Phone className="h-5 w-5 text-primary" />
-                    {t('contact.phone')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{hotelData.phone}</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Mail className="h-5 w-5 text-primary" />
-                    {t('contact.email')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{hotelData.email}</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-primary" />
-                    {t('contact.hours')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{t('contact.hours24')}</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          <Card>
+          <Card className="w-full">
             <CardHeader>
-              <CardTitle>{t('contact.sendMessage')}</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-primary" />
+                {t("contact.address")} 
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="firstName">{t('contact.firstName')}</Label>
-                    <Input id="firstName" type="text" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="lastName">{t('contact.lastName')}</Label>
-                    <Input id="lastName" type="text" required />
-                  </div>
-                </div>
-                
-                <div>
-                  <Label htmlFor="email">{t('contact.email')}</Label>
-                  <Input id="email" type="email" required />
-                </div>
-                
-                <div>
-                  <Label htmlFor="phone">{t('contact.phone')}</Label>
-                  <Input id="phone" type="tel" />
-                </div>
-                
-                <div>
-                  <Label htmlFor="subject">{t('contact.subject')}</Label>
-                  <Input id="subject" type="text" required />
-                </div>
-                
-                <div>
-                  <Label htmlFor="message">{t('contact.message')}</Label>
-                  <textarea
-                    id="message"
-                    className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    required
-                  />
-                </div>
-                
-                <Button type="submit" className="w-full">{t('contact.send')}</Button>
-              </form>
+              <p className="text-muted-foreground">
+                {hotelData.address}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Phone className="h-5 w-5 text-primary" />
+                {t("contact.phone")} 
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                {hotelData.phone}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Mail className="h-5 w-5 text-primary" />
+                {t("contact.email")} 
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                {hotelData.email}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Clock className="h-5 w-5 text-primary" />
+                {t("contact.hours")} 
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                {t("contact.hours24")} 
+              </p>
             </CardContent>
           </Card>
         </div>
 
         <div className="mt-12">
-          <Card>
+         <Card>
             <CardHeader>
-              <CardTitle>{t('contact.map')}</CardTitle>
+              <CardTitle>{t("contact.map")}</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-64 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
-                <p className="text-muted-foreground">{t('contact.mapPlaceholder')}</p>
+              <div style={{ width: '100%', height: '400px' }}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1054.556834219411!2d22.77589480606039!3d57.035872075160576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46ee4d5c17e120b1%3A0x952afbc88770e1ef!2sKafejn%C4%ABca%20Kandava!5e0!3m2!1slv!2slv!4v1749829071278!5m2!1slv!2slv"
+                  style={{ border: 0 }}
+                  width="100%"
+                  height="100%"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </CardContent>
           </Card>
+
         </div>
       </div>
     </div>

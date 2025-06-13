@@ -66,48 +66,62 @@ const Booking = () => {
   const selectedRoomData = roomsData.find((room) => room.type === formData.roomType);
 
   // Translation for room features
-  const translateRoomFeature = (feature: string): string => {
-    const featureTranslations: { [key: string]: { en: string; lv: string } } = {
-      "2 single beds": { en: "2 single beds", lv: "2 vienvietīgas gultas" },
-      "1 double bed": { en: "1 double bed", lv: "1 divguļamā gulta" },
-      "Private bathroom": { en: "Private bathroom", lv: "Privāta vannas istaba" },
-      "Free WiFi": { en: "Free WiFi", lv: "Bezmaksas WiFi" },
-      "Garden view": { en: "Garden view", lv: "Skats uz dārzu" },
-      "Balcony": { en: "Balcony", lv: "Balkons" },
-      "Desk": { en: "Desk", lv: "Rakstāmgalds" },
-      "1 single bed": { en: "1 single bed", lv: "1 vienvietīga gulta" },
+  const translateRoomFeature = (feature) => {
+    const featureTranslations = {
+      "Privāta vannas istaba": { en: "Private bathroom", lv: "Privāta vannas istaba" },
+      "Bezmaksas bezvadu internets": { en: "Free Wi-Fi", lv: "Bezmaksas bezvadu internets" },
+      "Skats uz iekšpagalmu": { en: "Courtyard view", lv: "Skats uz iekšpagalmu" },
+      "Balkons": { en: "Balcony", lv: "Balkons" },
+      "Skats uz pilsētu": { en: "City view", lv: "Skats uz pilsētu" },
+      "Plakanā ekrāna televizors": { en: "Flat screen tv", lv: "Plakanā ekrāna televizors" },
     };
     return featureTranslations[feature]?.[language] || feature;
   };
 
-  // Translation for room type
-  const translateRoomType = (type: string): string => {
-    const typeTranslations: { [key: string]: { en: string; lv: string } } = {
-      "Double Room": { en: "Double Room", lv: "Divistabu numurs" },
-      "Family Room": { en: "Family Room", lv: "Ģimenes numurs" },
-      "Single Room": { en: "Single Room", lv: "Vienvietīgs numurs" },
+  // Funcition to translate room type
+  const translateRoomType = (type) => {
+    const typeTranslations = {
+      "Divvietīgs numurs (1 gulta un 1 dīvāns) ar privātu vannas istabu": { en: "Double Room (1 bed and 1 sofa) with private bathroom", lv: "Divvietīgs numurs (1 gulta un 1 dīvāns) ar privātu vannas istabu" },
+      "Četrvietīgs numurs ar privātu vannas istabu": { en: "Quadruple Room with Private Bathroom", lv: "Četrvietīgs numurs ar privātu vannas istabu" },
+      "Divvietīgs numurs (1 gulta) ar privātu vannas istabu": { en: "Double Room with Private Bathroom", lv: "Divvietīgs numurs (1 gulta) ar privātu vannas istabu" },
+      "Divvietīgs numurs (2 gultas) ar privātu vannas istabu": { en: "Twin Room with Private Bathroom", lv: "Divvietīgs numurs (2 gultas) ar privātu vannas istabu" },
+      "Divvietīgs numurs (1 gulta) ar balkonu": { en: "Double Room with Balcony", lv: "Divvietīgs numurs (1 gulta) ar balkonu" },
+      "Vienvietīgs numurs ar privātu vannas istabu": { en: "Single Room with Private Bathroom", lv: "Vienvietīgs numurs ar privātu vannas istabu" },
     };
     return typeTranslations[type]?.[language] || type;
   };
 
-  // Translation for room description
-  const translateRoomDescription = (description: string): string => {
-    const descriptionTranslations: { [key: string]: { en: string; lv: string } } = {
-      "Comfortable double room with traditional Latvian décor and modern amenities.": { 
-        en: "Comfortable double room with traditional Latvian décor and modern amenities.", 
-        lv: "Ērta divistabu istaba ar tradicionālo latviešu dekoru un mūsdienīgām ērtībām." 
+  // Funcition to translate room description
+  const translateRoomDescription = (description) => {
+    const descriptionTranslations = {
+      "Šajā divvietīgajā numurā (ar 1 gultu) ir privāta vannas istaba ar vannu, dušu un fēnu. Šī divvietīgā numura ērtību klāstā ir elektriskā tējkanna, apkure un plakanā ekrāna televizors ar satelīta kanāliem. No numura paveras skats uz pilsētu. Šajā uzturēšanās vietā ir 2 gultas.": { 
+        en: "This double room has a private bathroom with a bath, shower and hairdryer. This double room features an electric kettle, heating and a flat-screen TV with satellite channels. The room offers city views. This accommodation has 2 beds.", 
+        lv: "Šajā divvietīgajā numurā (ar 1 gultu) ir privāta vannas istaba ar vannu, dušu un fēnu. Šī divvietīgā numura ērtību klāstā ir elektriskā tējkanna, apkure un plakanā ekrāna televizors ar satelīta kanāliem. No numura paveras skats uz pilsētu. Šajā uzturēšanās vietā ir 2 gultas." 
       },
-      "Spacious family room perfect for up to 4 guests with a lovely balcony view.": { 
-        en: "Spacious family room perfect for up to 4 guests with a lovely balcony view.", 
-        lv: "Plaša ģimenes istaba, kas ideāli piemērota līdz 4 viesiem ar skaistu balkona skatu." 
+      "Šajā četrvietīgajā numurā ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba. Šajā uzturēšanās vietā ir 3 gultas.": { 
+        en: "This quadruple room features a flat-screen TV with satellite channels and a private bathroom. This accommodation has 3 beds.", 
+        lv: "Šajā četrvietīgajā numurā ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba. Šajā uzturēšanās vietā ir 3 gultas." 
       },
-      "Cozy single room ideal for solo travelers or business guests.": { 
-        en: "Cozy single room ideal for solo travelers or business guests.", 
-        lv: "Mājīga vienvietīga istaba, kas ideāli piemērota vientuļajiem ceļotājiem vai komandiņu viesiem." 
+      "Šajā divvietīgajā numurā (ar 1 gultu) ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba.": { 
+        en: "This double room has a flat-screen TV with satellite channels and a private bathroom.", 
+        lv: "Šajā divvietīgajā numurā (ar 1 gultu) ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba." 
+      },
+      "Šajā divvietīgajā numurā (ar 2 gultām) ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba.": { 
+        en: "This twin room has a flat-screen TV with satellite channels and a private bathroom.", 
+        lv: "Šajā divvietīgajā numurā (ar 2 gultām) ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba." 
+      },
+      "Šajā divvietīgajā numurā ir plakanā ekrāna televizors ar satelīttelevīzijas kanāliem, privāta vannas istaba un balkons ar skatu uz pilsētu. Numurā ir 1 gulta.": { 
+        en: "This double room features a flat-screen TV with satellite channels, a private bathroom and a balcony with city views. The room has 1 bed.", 
+        lv: "Šajā divvietīgajā numurā ir plakanā ekrāna televizors ar satelīttelevīzijas kanāliem, privāta vannas istaba un balkons ar skatu uz pilsētu. Numurā ir 1 gulta." 
+      },
+      "Šajā vienvietīgajā numurā ir apkure, kā arī privāta vannas istaba ar dušu. Šajā uzturēšanās vietā ir 1 gulta.": { 
+        en: "This single room has heating and a private bathroom with a shower. This accommodation has 1 bed.", 
+        lv: "Šajā vienvietīgajā numurā ir apkure, kā arī privāta vannas istaba ar dušu. Šajā uzturēšanās vietā ir 1 gulta." 
       },
     };
     return descriptionTranslations[description]?.[language] || description;
   };
+
 
   return (
     <div className="min-h-screen bg-background">

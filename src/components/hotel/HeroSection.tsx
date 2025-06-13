@@ -39,9 +39,7 @@ export const HeroSection = () => {
                 {t('nav.bookNow')}
               </a>
             </Button>
-            <Button variant="outline" size="lg" asChild className="border-white text-white hover:bg-white hover:text-amber-900">
-              <a href="#rooms">{t('home.rooms.viewAll')}</a>
-            </Button>
+            
           </div>
         </div>
       </div>

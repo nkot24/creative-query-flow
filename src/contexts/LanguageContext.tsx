@@ -43,7 +43,7 @@ const translations = {
     'home.contact.location': 'Location',
     'home.contact.phone': 'Phone',
     'home.contact.email': 'Email',
-    'home.contact.contactUs': 'Contact Us',
+    'home.contact.contactUs': 'Contacts',
     
     // Menu page
     'menu.title': 'Restaurant Menu',
@@ -162,7 +162,7 @@ const translations = {
     'home.contact.location': 'Atrašanās vieta',
     'home.contact.phone': 'Tālrunis',
     'home.contact.email': 'E-pasts',
-    'home.contact.contactUs': 'Sazināties',
+    'home.contact.contactUs': 'Kontakti',
     
     // Menu page
     'menu.title': 'Restorāna Ēdienkarte',
