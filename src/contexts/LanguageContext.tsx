@@ -145,7 +145,7 @@ const translations = {
     'home.rooms.viewAll': 'Skatīt Visas Istabas',
     'home.food.title': 'Restorāns un Ēdienkarte',
     'home.food.subtitle': 'Baudiet garšīgus vietējos un starptautiskos ēdienus mūsu viesnīcas restorānā',
-    'home.food.viewMenu': 'Skatīt Pilnu Ēdienkarti',
+    'home.food.viewMenu': 'Skatīt Ēdienkarti',
     'home.about.title': 'Par Viesnīcu Kandava',
     'home.about.description1': 'Mūsu viesnīca atrodas vēsturiskās Kandavas sirdī, apvienojot tradicionālo latviešu šarmu ar mūsdienu komfortu. Mēs lepojamies ar izcilu viesmīlību skaisti restaurētā ēkā, kas stāsta mūsu bagātā kultūras mantojuma stāstu.',
     'home.about.description2': 'Neatkarīgi no tā, vai jūs iebraucat darīšanu vai atpūtas nolūkos, mūsu apdāvinātais personāls nodrošina, ka jūsu uzturēšanās būs neaizmirstama un ērta.',

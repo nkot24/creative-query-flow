@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { roomsData } from "@/models/hotelModel";
@@ -6,9 +5,50 @@ import { Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export const RoomsPreview = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const featuredRooms = roomsData.slice(0, 2);
   const bookingLink = "https://www.booking.com/hotel/lv/viesnica-kandava.lv.html?aid=347181&sid=f1ceadeecc09feb1b4383ff863772be3&dest_id=-3209286&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srepoch=1749292056&srpvid=f10c49f942a907d2&type=total&ucfs=1&activeTab=main#RD1058138101";
+
+  const translateRoomFeature = (feature: string): string => {
+    const featureTranslations: { [key: string]: { en: string; lv: string } } = {
+      "2 single beds": { en: "2 single beds", lv: "2 vienvietīgas gultas" },
+      "1 double bed": { en: "1 double bed", lv: "1 divguļamā gulta" },
+      "Private bathroom": { en: "Private bathroom", lv: "Privāta vannas istaba" },
+      "Free Wi-Fi": { en: "Free Wi-Fi", lv: "Bezmaksas Wi-Fi" },
+      "Garden view": { en: "Garden view", lv: "Skats uz dārzu" },
+      "Balcony": { en: "Balcony", lv: "Balkons" },
+      "Desk": { en: "Desk", lv: "Rakstāmgalds" },
+      "1 single bed": { en: "1 single bed", lv: "1 vienvietīga gulta" }
+    };
+    return featureTranslations[feature]?.[language] || feature;
+  };
+
+  const translateRoomType = (type: string): string => {
+    const typeTranslations: { [key: string]: { en: string; lv: string } } = {
+      "Double Room": { en: "Double Room", lv: "Divistabu numurs" },
+      "Family Room": { en: "Family Room", lv: "Ģimenes numurs" },
+      "Single Room": { en: "Single Room", lv: "Vienvietīgs numurs" }
+    };
+    return typeTranslations[type]?.[language] || type;
+  };
+
+  const translateRoomDescription = (description: string): string => {
+    const descriptionTranslations: { [key: string]: { en: string; lv: string } } = {
+      "Comfortable double room with traditional Latvian décor and modern amenities.": { 
+        en: "Comfortable double room with traditional Latvian décor and modern amenities.", 
+        lv: "Ērta divistabu istaba ar tradicionālo latviešu dekoru un mūsdienīgām ērtībām." 
+      },
+      "Spacious family room perfect for up to 4 guests with a lovely balcony view.": { 
+        en: "Spacious family room perfect for up to 4 guests with a lovely balcony view.", 
+        lv: "Plaša ģimenes istaba, kas ideāli piemērota līdz 4 viesiem ar skaistu balkona skatu." 
+      },
+      "Cozy single room ideal for solo travelers or business guests.": { 
+        en: "Cozy single room ideal for solo travelers or business guests.", 
+        lv: "Mājīga vienvietīga istaba, kas ideāli piemērota vientuļajiem ceļotājiem vai komandiņu viesiem." 
+      }
+    };
+    return descriptionTranslations[description]?.[language] || description;
+  };
 
   return (
     <section id="rooms" className="py-16 bg-gradient-to-b from-amber-50/30 to-orange-50/20">
@@ -27,7 +67,9 @@ export const RoomsPreview = () => {
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-amber-900">{room.type}</CardTitle>
+                    <CardTitle className="text-amber-900">
+                      {translateRoomType(room.type)}
+                    </CardTitle>
                     <CardDescription className="flex items-center gap-1 mt-1">
                       <Users className="h-4 w-4 text-amber-600" />
                       {t('common.upTo')} {room.max_guests} {t('common.guests')}
@@ -40,14 +82,16 @@ export const RoomsPreview = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">{room.description}</p>
+                <p className="text-muted-foreground mb-4">
+                  {translateRoomDescription(room.description)}
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {room.features.slice(0, 3).map((feature) => (
                     <span
                       key={feature}
                       className="px-2 py-1 bg-amber-100 text-amber-800 text-xs rounded-md"
                     >
-                      {feature}
+                      {translateRoomFeature(feature)}
                     </span>
                   ))}
                 </div>
