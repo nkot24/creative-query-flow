@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar, Users, Info } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import emailjs from "emailjs-com";
 
 const Booking = () => {
   const location = useLocation();
@@ -20,7 +21,7 @@ const Booking = () => {
   const selectedRoom = location.state?.selectedRoom as Room | undefined;
 
   const [formData, setFormData] = useState({ 
-    roomId: selectedRoom?.id || "", 
+    roomType: selectedRoom?.type || "", 
     guestName: "", 
     guestEmail: "", 
     guestPhone: "", 
@@ -39,6 +40,20 @@ const Booking = () => {
     setTimeout(() => setShowAlert(false), 10000);
 
     toast({ title: t("booking.success"), description: t("booking.successMessage") });
+
+    // Send booking details via EmailJS
+    emailjs.send(
+      "service_r2n3ibq", // Your EmailJS service ID
+      "template_6isaoog", // Your EmailJS template ID
+      formData, // The form data to send
+      "xMMoQJAwgad7xzlJ7" // Your EmailJS Public API key
+    )
+    .then((response) => {
+      console.log("Booking email successfully sent!", response.text);
+    })
+    .catch((error) => {
+      console.error("Failed to send booking email.", error);
+    });
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -48,7 +63,7 @@ const Booking = () => {
     }));
   };
 
-  const selectedRoomData = roomsData.find((room) => room.id === formData.roomId);
+  const selectedRoomData = roomsData.find((room) => room.type === formData.roomType);
 
   // Translation for room features
   const translateRoomFeature = (feature: string): string => {
@@ -56,7 +71,7 @@ const Booking = () => {
       "2 single beds": { en: "2 single beds", lv: "2 vienvietīgas gultas" },
       "1 double bed": { en: "1 double bed", lv: "1 divguļamā gulta" },
       "Private bathroom": { en: "Private bathroom", lv: "Privāta vannas istaba" },
-      "Free Wi-Fi": { en: "Free Wi-Fi", lv: "Bezmaksas Wi-Fi" },
+      "Free WiFi": { en: "Free WiFi", lv: "Bezmaksas WiFi" },
       "Garden view": { en: "Garden view", lv: "Skats uz dārzu" },
       "Balcony": { en: "Balcony", lv: "Balkons" },
       "Desk": { en: "Desk", lv: "Rakstāmgalds" },
@@ -130,9 +145,9 @@ const Booking = () => {
                     <div>
                       <Label htmlFor="roomSelect">{t("booking.selectRoom")}</Label>
                       <Select
-                        value={formData.roomId}
+                        value={formData.roomType}
                         onValueChange={(value) =>
-                          handleInputChange("roomId", value)
+                          handleInputChange("roomType", value)
                         }
                       >
                         <SelectTrigger>
@@ -142,7 +157,7 @@ const Booking = () => {
                         </SelectTrigger>
                         <SelectContent>
                           {roomsData.map((room) => (
-                            <SelectItem key={room.id} value={room.id}>
+                            <SelectItem key={room.id} value={room.type}>
                              {translateRoomType(room.type)} - €{room.price_per_night}/{t("common.night")} 
                             </SelectItem>
                            ))}
@@ -317,3 +332,4 @@ const Booking = () => {
 };
 
 export default Booking;
+

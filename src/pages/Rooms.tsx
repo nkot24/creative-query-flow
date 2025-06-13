@@ -72,7 +72,9 @@ const Rooms = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {roomsData.map((room) => (
             <Card key={room.id} className="overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+               <img src={room.image} alt={translateRoomType(room.type)} className="mb-4 rounded-md object-cover w-full h-[396px]" />
+
+              
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>

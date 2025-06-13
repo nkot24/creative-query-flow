@@ -44,22 +44,23 @@ export const hotelData: Hotel = {
 export const roomsData: Room[] = [
   {
     id: "1",
-    type: "Double Room",
-    price_per_night: 65,
-    features: ["2 single beds", "Private bathroom", "Free Wi-Fi", "Garden view"],
-    description: "Comfortable double room with traditional Latvian décor and modern amenities.",
-    image: "/placeholder.svg",
+    type: "Divvietīgs numurs (1 gulta) ar privātu vannas istabu",
+    price_per_night: 60,
+    features: ["24 m²","Skats uz pilsētu","Privāta vannas istaba","Plakanā ekrāna", "televizors","Bezmaksas bezvadu internets"],
+    description: "Šajā divvietīgajā numurā (ar 1 gultu) ir privāta vannas istaba ar vannu, dušu un fēnu. Šī divvietīgā numura ērtību klāstā ir elektriskā tējkanna, apkure un plakanā ekrāna televizors ar satelīta kanāliem. No numura paveras skats uz pilsētu. Šajā uzturēšanās vietā ir 2 gultas.",
+    image: "/lovable-uploads/images/662562698.jpg",
     max_guests: 2
   },
   {
     id: "2",
-    type: "Family Room",
-    price_per_night: 85,
-    features: ["1 double bed", "2 single beds", "Private bathroom", "Free Wi-Fi", "Balcony"],
-    description: "Spacious family room perfect for up to 4 guests with a lovely balcony view.",
-    image: "/placeholder.svg",
+    type: "Četrvietīgs numurs ar privātu vannas istabu",
+    price_per_night: 70,
+    features: ["Skats uz iekšpagalmu","Privāta vannas istaba","Plakanā ekrāna televizors","Bezmaksas bezvadu internets"],
+    description: "Šajā četrvietīgajā numurā ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba. Šajā uzturēšanās vietā ir 3 gultas.",
+    image: "/lovable-uploads/images/663100348.jpg",
     max_guests: 4
   },
+  
   {
     id: "3",
     type: "Single Room",
