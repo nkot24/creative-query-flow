@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { hotelData } from "@/models/hotelModel";
 import { Wifi, Car, Coffee, Users, Shield, Clock } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const amenityIcons: { [key: string]: any } = {
   "Free Wi-Fi": Wifi,
@@ -14,30 +15,29 @@ const amenityIcons: { [key: string]: any } = {
 };
 
 export const AboutPreview = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              About {hotelData.name}
+              {t('home.about.title')}
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Nestled in the heart of historic Kandava, our hotel combines traditional Latvian 
-              charm with modern comfort. We pride ourselves on providing exceptional hospitality 
-              in a beautifully restored building that tells the story of our rich cultural heritage.
+              {t('home.about.description1')}
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Whether you're visiting for business or leisure, our dedicated staff ensures 
-              your stay is memorable and comfortable.
+              {t('home.about.description2')}
             </p>
             <Button asChild>
-              <Link to="/about">Learn More</Link>
+              <Link to="/about">{t('home.about.learnMore')}</Link>
             </Button>
           </div>
           
           <div className="bg-card p-6 rounded-lg border">
-            <h3 className="text-xl font-semibold mb-4">Hotel Amenities</h3>
+            <h3 className="text-xl font-semibold mb-4">{t('home.about.amenities')}</h3>
             <div className="grid grid-cols-2 gap-4">
               {hotelData.amenities.map((amenity) => {
                 const IconComponent = amenityIcons[amenity] || Shield;
