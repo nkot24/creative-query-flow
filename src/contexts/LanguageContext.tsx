@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'en' | 'lv';
@@ -116,6 +115,7 @@ const translations = {
     'booking.roomFeatures': 'Room Features:',
     'booking.success': 'Booking Submitted!',
     'booking.successMessage': 'We will contact you shortly to confirm your reservation.',
+    'booking.availabilityAlert': 'We will contact you as soon as possible and inform you about room availability.',
     
     // Common
     'common.perNight': 'per night',
@@ -234,6 +234,7 @@ const translations = {
     'booking.roomFeatures': 'Istabas Ērtības:',
     'booking.success': 'Rezervācija Iesniegta!',
     'booking.successMessage': 'Mēs ar jums sazināsimies drīzumā, lai apstiprinātu rezervāciju.',
+    'booking.availabilityAlert': 'Mēs ar jums sazināsimies pēc iespējas ātrāk un informēsim par istabu pieejamību.',
     
     // Common
     'common.perNight': 'par nakti',

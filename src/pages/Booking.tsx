@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Navigation } from "@/components/hotel/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,10 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { roomsData, type Room } from "@/models/hotelModel";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { Calendar, Users } from "lucide-react";
+import { Calendar, Users, Info } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Booking = () => {
@@ -29,14 +29,24 @@ const Booking = () => {
     guests: selectedRoom ? selectedRoom.max_guests.toString() : "1"
   });
 
+  const [showAlert, setShowAlert] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Booking submitted:", formData);
+    
+    // Show alert message
+    setShowAlert(true);
+    
+    // Hide alert after 10 seconds
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 10000);
+
     toast({
       title: t('booking.success'),
       description: t('booking.successMessage'),
     });
-    navigate("/");
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -44,6 +54,35 @@ const Booking = () => {
   };
 
   const selectedRoomData = roomsData.find(room => room.id === formData.roomId);
+
+  // Function to translate room features
+  const translateRoomFeature = (feature: string): string => {
+    const featureTranslations: { [key: string]: { en: string; lv: string } } = {
+      "2 single beds": { en: "2 single beds", lv: "2 vienvietīgas gultas" },
+      "1 double bed": { en: "1 double bed", lv: "1 divguļamā gulta" },
+      "Private bathroom": { en: "Private bathroom", lv: "Privāta vannas istaba" },
+      "Free Wi-Fi": { en: "Free Wi-Fi", lv: "Bezmaksas Wi-Fi" },
+      "Garden view": { en: "Garden view", lv: "Skats uz dārzu" },
+      "Balcony": { en: "Balcony", lv: "Balkons" },
+      "Desk": { en: "Desk", lv: "Rakstāmgalds" },
+      "1 single bed": { en: "1 single bed", lv: "1 vienvietīga gulta" }
+    };
+
+    const { language } = useLanguage();
+    return featureTranslations[feature]?.[language] || feature;
+  };
+
+  // Function to translate room type
+  const translateRoomType = (type: string): string => {
+    const typeTranslations: { [key: string]: { en: string; lv: string } } = {
+      "Double Room": { en: "Double Room", lv: "Divistabu numurs" },
+      "Family Room": { en: "Family Room", lv: "Ģimenes numurs" },
+      "Single Room": { en: "Single Room", lv: "Vienvietīgs numurs" }
+    };
+
+    const { language } = useLanguage();
+    return typeTranslations[type]?.[language] || type;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -56,6 +95,17 @@ const Booking = () => {
             {t('booking.subtitle')}
           </p>
         </div>
+
+        {showAlert && (
+          <div className="mb-6">
+            <Alert>
+              <Info className="h-4 w-4" />
+              <AlertDescription>
+                We will contact you as soon as possible and inform you about room availability.
+              </AlertDescription>
+            </Alert>
+          </div>
+        )}
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
@@ -74,7 +124,7 @@ const Booking = () => {
                       <SelectContent>
                         {roomsData.map((room) => (
                           <SelectItem key={room.id} value={room.id}>
-                            {room.type} - €{room.price_per_night}/{t('common.night')}
+                            {translateRoomType(room.type)} - €{room.price_per_night}/{t('common.night')}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -180,7 +230,7 @@ const Booking = () => {
                 <CardContent>
                   <div className="space-y-4">
                     <div>
-                      <h3 className="font-semibold">{selectedRoomData.type}</h3>
+                      <h3 className="font-semibold">{translateRoomType(selectedRoomData.type)}</h3>
                       <p className="text-sm text-muted-foreground">{selectedRoomData.description}</p>
                     </div>
                     
@@ -200,7 +250,7 @@ const Booking = () => {
                       <div className="space-y-1">
                         {selectedRoomData.features.map((feature) => (
                           <div key={feature} className="text-sm text-muted-foreground">
-                            • {feature}
+                            • {translateRoomFeature(feature)}
                           </div>
                         ))}
                       </div>
