@@ -1,6 +1,8 @@
+
 import { Navigation } from "@/components/hotel/Navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Link } from "react-router-dom";
 import { roomsData } from "@/models/hotelModel";
 import { Users } from "lucide-react";
@@ -81,8 +83,28 @@ const Rooms = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {roomsData.map((room) => (
             <Card key={room.id} className="flex flex-col overflow-hidden">
-              {/* Image */}
-              <img src={room.image} alt={translateRoomType(room.type)} className="mb-4 rounded-md object-cover w-full h-[396px]" />
+              {/* Image Carousel */}
+              <div className="relative">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {room.images.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <img 
+                          src={image} 
+                          alt={`${translateRoomType(room.type)} - ${index + 1}`} 
+                          className="rounded-md object-cover w-full h-[396px]" 
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  {room.images.length > 1 && (
+                    <>
+                      <CarouselPrevious className="left-2" />
+                      <CarouselNext className="right-2" />
+                    </>
+                  )}
+                </Carousel>
+              </div>
 
               {/* Card Header */}
               <CardHeader>

@@ -1,5 +1,7 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { roomsData } from "@/models/hotelModel";
 import { Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -80,8 +82,29 @@ export const RoomsPreview = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           {featuredRooms.map((room) => (
             <Card key={room.id} className="overflow-hidden border-amber-200 hover:shadow-lg transition-shadow">
-              {/* Image */}
-              <img src={room.image} alt={translateRoomType(room.type)} className="mb-4 rounded-md object-cover w-full h-[396px]" />
+              {/* Image Carousel */}
+              <div className="relative">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {room.images.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <img 
+                          src={image} 
+                          alt={`${translateRoomType(room.type)} - ${index + 1}`} 
+                          className="rounded-md object-cover w-full h-[396px]" 
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  {room.images.length > 1 && (
+                    <>
+                      <CarouselPrevious className="left-2" />
+                      <CarouselNext className="right-2" />
+                    </>
+                  )}
+                </Carousel>
+              </div>
+              
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
