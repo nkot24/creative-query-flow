@@ -14,8 +14,21 @@ const amenityIcons: { [key: string]: any } = {
   "Private bathroom": Shield,
 };
 
+const translateAmenity = (amenity: string, language: string) => {
+  const translations: { [key: string]: { [key: string]: string } } = {
+    "Free Wi-Fi": { en: "Free Wi-Fi", lv: "Bezmaksas bezvadu internets" },
+    "Private bathroom": { en: "Private bathroom", lv: "Privāta vannas istaba" },
+    "Restaurant": { en: "Restaurant", lv: "Restorāns" },
+    "Garden": { en: "Garden", lv: "Dārzs" },
+    "Parking": { en: "Parking", lv: "Autostāvvieta" },
+    "24/7 Reception": { en: "24/7 Reception", lv: "24/7 Reģistratūra" },
+  };
+  
+  return translations[amenity]?.[language] || amenity;
+};
+
 export const AboutPreview = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="py-16">
@@ -44,7 +57,7 @@ export const AboutPreview = () => {
                 return (
                   <div key={amenity} className="flex items-center gap-2">
                     <IconComponent className="h-4 w-4 text-primary" />
-                    <span className="text-sm">{amenity}</span>
+                    <span className="text-sm">{translateAmenity(amenity, language)}</span>
                   </div>
                 );
               })}
