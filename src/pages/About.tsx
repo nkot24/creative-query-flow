@@ -1,3 +1,4 @@
+
 import { Navigation } from "@/components/hotel/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { hotelData } from "@/models/hotelModel";
@@ -5,18 +6,18 @@ import { Wifi, Car, Coffee, Users, Shield, Clock, MapPin, Award, Heart } from "l
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const amenityIcons = {
-  "Free WiFi": Wifi,
+  "Free Wi-Fi": Wifi,
   "Parking": Car,
   "Restaurant": Coffee,
   "Garden": Users,
   "24/7 Reception": Clock,
-  "Private Bathroom": Shield,
+  "Private bathroom": Shield,
 };
 
 const translateAmenity = (amenity, language) => {
   const translations = {
-    "Free WiFi": { en: "Free WiFi", lv: "Bezmaksas bezvadu internets" },
-    "Private Bathroom": { en: "Private Bathroom", lv: "Privāta vannas istaba" },
+    "Free Wi-Fi": { en: "Free Wi-Fi", lv: "Bezmaksas bezvadu internets" },
+    "Private bathroom": { en: "Private bathroom", lv: "Privāta vannas istaba" },
     "Restaurant": { en: "Restaurant", lv: "Restorāns" },
     "Garden": { en: "Garden", lv: "Dārzs" },
     "Parking": { en: "Parking", lv: "Autostāvvieta" },
@@ -63,7 +64,7 @@ const About = () => {
             <p className="text-muted-foreground">
               {language === "lv"
                 ? "Tā ir ideāla vieta, kur atpūsties, strādājot vai ceļojot pa Latviju."
-                : "It’s a perfect place to rest, work, or travel through Latvia."}
+                : "It's a perfect place to rest, work, or travel through Latvia."}
             </p>
           </div>
 
@@ -152,4 +153,3 @@ const About = () => {
 };
 
 export default About;
-
