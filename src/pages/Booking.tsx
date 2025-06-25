@@ -9,7 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { roomsData, type Room } from "@/models/hotelModel";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { Calendar, Users, Info } from "lucide-react";
+import { Calendar, Users, Info, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import emailjs from "emailjs-com";
 
@@ -37,7 +37,6 @@ const Booking = () => {
     console.log("Booking submitted!", formData);
 
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 10000);
 
     toast({ title: t("booking.success"), description: t("booking.successMessage") });
 
@@ -61,6 +60,10 @@ const Booking = () => {
       ...prev,
       [field]: value,
     }));
+  };
+
+  const handleAlertDismiss = () => {
+    setShowAlert(false);
   };
 
   const selectedRoomData = roomsData.find((room) => room.type === formData.roomType);
@@ -122,7 +125,6 @@ const Booking = () => {
     return descriptionTranslations[description]?.[language] || description;
   };
 
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -137,13 +139,26 @@ const Booking = () => {
 
         {showAlert && (
           <div className="mb-6 flex justify-center">
-            <Alert className="p-6 max-w-md w-full text-center">
+            <Alert className="p-6 max-w-md w-full text-center relative">
               <Info className="h-6 w-6 mr-2 inline-block align-middle" />
               <AlertDescription className="text-lg font-semibold">
                 {language === "lv"
                     ? "Mēs ar jums sazināsimies pēc iespējas ātrāk, lai informētu par numuru pieejamību."
                     : "We will contact you as soon as possible and inform you about room availability."}
               </AlertDescription>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="absolute top-2 right-2 h-6 w-6 p-0"
+                onClick={handleAlertDismiss}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+              <div className="mt-4">
+                <Button onClick={handleAlertDismiss} size="sm">
+                  OK
+                </Button>
+              </div>
             </Alert>
           </div>
         )}
@@ -346,4 +361,3 @@ const Booking = () => {
 };
 
 export default Booking;
-
