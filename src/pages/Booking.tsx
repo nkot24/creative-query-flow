@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Navigation } from "@/components/hotel/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -5,11 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { roomsData, type Room } from "@/models/hotelModel";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { Calendar, Users, Info, X } from "lucide-react";
+import { Calendar, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import emailjs from "emailjs-com";
 
@@ -30,13 +31,13 @@ const Booking = () => {
     guests: selectedRoom ? selectedRoom.max_guests.toString() : "1" 
   });
 
-  const [showAlert, setShowAlert] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Booking submitted!", formData);
 
-    setShowAlert(true);
+    setShowDialog(true);
 
     toast({ title: t("booking.success"), description: t("booking.successMessage") });
 
@@ -62,8 +63,18 @@ const Booking = () => {
     }));
   };
 
-  const handleAlertDismiss = () => {
-    setShowAlert(false);
+  const handleDialogClose = () => {
+    setShowDialog(false);
+    // Clear all form data
+    setFormData({
+      roomType: "",
+      guestName: "",
+      guestEmail: "",
+      guestPhone: "",
+      checkIn: "",
+      checkOut: "",
+      guests: "1"
+    });
   };
 
   const selectedRoomData = roomsData.find((room) => room.type === formData.roomType);
@@ -137,31 +148,25 @@ const Booking = () => {
           </p>
         </div>
 
-        {showAlert && (
-          <div className="mb-6 flex justify-center">
-            <Alert className="p-6 max-w-md w-full text-center relative">
-              <Info className="h-6 w-6 mr-2 inline-block align-middle" />
-              <AlertDescription className="text-lg font-semibold">
+        <Dialog open={showDialog} onOpenChange={setShowDialog}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>
+                {language === "lv" ? "Apstiprinājums" : "Confirmation"}
+              </DialogTitle>
+              <DialogDescription className="text-base">
                 {language === "lv"
-                    ? "Mēs ar jums sazināsimies pēc iespējas ātrāk, lai informētu par numuru pieejamību."
-                    : "We will contact you as soon as possible and inform you about room availability."}
-              </AlertDescription>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="absolute top-2 right-2 h-6 w-6 p-0"
-                onClick={handleAlertDismiss}
-              >
-                <X className="h-4 w-4" />
+                  ? "Mēs ar jums sazināsimies pēc iespējas ātrāk, lai informētu par numuru pieejamību."
+                  : "We will contact you as soon as possible and inform you about room availability."}
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button onClick={handleDialogClose} className="w-full">
+                OK
               </Button>
-              <div className="mt-4">
-                <Button onClick={handleAlertDismiss} size="sm">
-                  OK
-                </Button>
-              </div>
-            </Alert>
-          </div>
-        )}
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
