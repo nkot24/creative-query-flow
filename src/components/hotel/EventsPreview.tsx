@@ -39,10 +39,10 @@ export const EventsPreview = () => {
   };
 
   return (
-    <section id="events" className="py-16 bg-gradient-to-b from-emerald-50/30 to-green-50/20">
+    <section id="events" className="py-16 bg-gradient-to-b from-amber-50/30 to-orange-50/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-emerald-900">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-amber-900">
             {language === 'lv' ? 'Pasākumi' : 'Events'}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -54,37 +54,27 @@ export const EventsPreview = () => {
         </div>
 
         <div className="max-w-4xl mx-auto relative">
-          {/* Navigation Buttons */}
-          <div className="flex justify-between items-center mb-8">
+          {/* Event Card with Navigation */}
+          <Card className="overflow-hidden border-amber-200 hover:shadow-lg transition-shadow relative">
+            {/* Navigation Arrows on Card */}
             <Button
               variant="outline"
-              size="lg"
+              size="icon"
               onClick={previousEvent}
-              className="flex items-center gap-2 bg-white/80 hover:bg-white border-emerald-200"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white border-amber-200 text-amber-700 hover:text-amber-800 shadow-md"
             >
               <ChevronLeft className="h-5 w-5" />
-              {language === 'lv' ? 'Iepriekšējais' : 'Previous'}
             </Button>
             
-            <div className="text-center">
-              <span className="text-sm text-muted-foreground">
-                {currentEventIndex + 1} / {eventsData.length}
-              </span>
-            </div>
-
             <Button
               variant="outline"
-              size="lg"
+              size="icon"
               onClick={nextEvent}
-              className="flex items-center gap-2 bg-white/80 hover:bg-white border-emerald-200"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white border-amber-200 text-amber-700 hover:text-amber-800 shadow-md"
             >
-              {language === 'lv' ? 'Nākamais' : 'Next'}
               <ChevronRight className="h-5 w-5" />
             </Button>
-          </div>
 
-          {/* Event Card */}
-          <Card className="overflow-hidden border-emerald-200 hover:shadow-lg transition-shadow">
             <div className="grid md:grid-cols-2 gap-0">
               {/* Image */}
               <div className="relative">
@@ -94,7 +84,7 @@ export const EventsPreview = () => {
                   className="object-cover w-full h-[400px] md:h-full" 
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">
+                  <span className="px-3 py-1 bg-amber-100 text-amber-800 text-sm rounded-full">
                     {translateCategory(currentEvent.category)}
                   </span>
                 </div>
@@ -103,7 +93,7 @@ export const EventsPreview = () => {
               {/* Content */}
               <div className="flex flex-col">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-emerald-900">
+                  <CardTitle className="text-2xl text-amber-900">
                     {currentEvent.title}
                   </CardTitle>
                   <CardDescription className="text-base">
@@ -116,19 +106,26 @@ export const EventsPreview = () => {
                     {/* Event Details */}
                     <div className="space-y-3">
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <Calendar className="h-4 w-4 text-emerald-600" />
+                        <Calendar className="h-4 w-4 text-amber-600" />
                         <span>{formatDate(currentEvent.date)}</span>
                       </div>
                       
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <Clock className="h-4 w-4 text-emerald-600" />
+                        <Clock className="h-4 w-4 text-amber-600" />
                         <span>{currentEvent.time}</span>
                       </div>
                       
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <MapPin className="h-4 w-4 text-emerald-600" />
+                        <MapPin className="h-4 w-4 text-amber-600" />
                         <span>{currentEvent.location}</span>
                       </div>
+                    </div>
+
+                    {/* Event indicator */}
+                    <div className="flex justify-center mt-6">
+                      <span className="text-sm text-amber-700 bg-amber-50 px-3 py-1 rounded-full">
+                        {currentEventIndex + 1} / {eventsData.length}
+                      </span>
                     </div>
                   </div>
                 </CardContent>
