@@ -6,7 +6,6 @@ export interface Event {
   time: string;
   description: string;
   location: string;
-  price: number;
   image: string;
   category: string;
 }
@@ -19,7 +18,6 @@ export const eventsData: Event[] = [
     time: "20:00",
     description: "Enjoy an evening of smooth jazz with local musicians in our cozy lounge.",
     location: "Hotel Lounge",
-    price: 25,
     image: "/placeholder.svg",
     category: "Music"
   },
@@ -30,7 +28,6 @@ export const eventsData: Event[] = [
     time: "18:30",
     description: "Discover local wines paired with artisanal cheeses in an intimate setting.",
     location: "Wine Cellar",
-    price: 45,
     image: "/placeholder.svg",
     category: "Food & Drink"
   },
@@ -41,7 +38,6 @@ export const eventsData: Event[] = [
     time: "14:00",
     description: "Learn to cook traditional local dishes with our head chef.",
     location: "Hotel Kitchen",
-    price: 60,
     image: "/placeholder.svg",
     category: "Experience"
   },
@@ -52,7 +48,6 @@ export const eventsData: Event[] = [
     time: "16:00",
     description: "Local artists showcase their latest works in our gallery space.",
     location: "Gallery Hall",
-    price: 15,
     image: "/placeholder.svg",
     category: "Culture"
   }

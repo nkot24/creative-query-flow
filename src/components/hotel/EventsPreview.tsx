@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { eventsData } from "@/models/eventsModel";
-import { Calendar, Clock, MapPin, Euro, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Clock, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export const EventsPreview = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const currentEvent = eventsData[currentEventIndex];
 
@@ -39,10 +39,10 @@ export const EventsPreview = () => {
   };
 
   return (
-    <section id="events" className="py-16 bg-gradient-to-b from-blue-50/30 to-indigo-50/20">
+    <section id="events" className="py-16 bg-gradient-to-b from-emerald-50/30 to-green-50/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-900">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-emerald-900">
             {language === 'lv' ? 'Pasākumi' : 'Events'}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -60,7 +60,7 @@ export const EventsPreview = () => {
               variant="outline"
               size="lg"
               onClick={previousEvent}
-              className="flex items-center gap-2 bg-white/80 hover:bg-white border-blue-200"
+              className="flex items-center gap-2 bg-white/80 hover:bg-white border-emerald-200"
             >
               <ChevronLeft className="h-5 w-5" />
               {language === 'lv' ? 'Iepriekšējais' : 'Previous'}
@@ -76,7 +76,7 @@ export const EventsPreview = () => {
               variant="outline"
               size="lg"
               onClick={nextEvent}
-              className="flex items-center gap-2 bg-white/80 hover:bg-white border-blue-200"
+              className="flex items-center gap-2 bg-white/80 hover:bg-white border-emerald-200"
             >
               {language === 'lv' ? 'Nākamais' : 'Next'}
               <ChevronRight className="h-5 w-5" />
@@ -84,7 +84,7 @@ export const EventsPreview = () => {
           </div>
 
           {/* Event Card */}
-          <Card className="overflow-hidden border-blue-200 hover:shadow-lg transition-shadow">
+          <Card className="overflow-hidden border-emerald-200 hover:shadow-lg transition-shadow">
             <div className="grid md:grid-cols-2 gap-0">
               {/* Image */}
               <div className="relative">
@@ -94,7 +94,7 @@ export const EventsPreview = () => {
                   className="object-cover w-full h-[400px] md:h-full" 
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">
                     {translateCategory(currentEvent.category)}
                   </span>
                 </div>
@@ -103,7 +103,7 @@ export const EventsPreview = () => {
               {/* Content */}
               <div className="flex flex-col">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-blue-900">
+                  <CardTitle className="text-2xl text-emerald-900">
                     {currentEvent.title}
                   </CardTitle>
                   <CardDescription className="text-base">
@@ -111,42 +111,25 @@ export const EventsPreview = () => {
                   </CardDescription>
                 </CardHeader>
                 
-                <CardContent className="flex-grow flex flex-col justify-between">
+                <CardContent className="flex-grow">
                   <div className="space-y-4">
                     {/* Event Details */}
                     <div className="space-y-3">
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <Calendar className="h-4 w-4 text-blue-600" />
+                        <Calendar className="h-4 w-4 text-emerald-600" />
                         <span>{formatDate(currentEvent.date)}</span>
                       </div>
                       
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <Clock className="h-4 w-4 text-blue-600" />
+                        <Clock className="h-4 w-4 text-emerald-600" />
                         <span>{currentEvent.time}</span>
                       </div>
                       
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <MapPin className="h-4 w-4 text-blue-600" />
+                        <MapPin className="h-4 w-4 text-emerald-600" />
                         <span>{currentEvent.location}</span>
                       </div>
-                      
-                      <div className="flex items-center gap-2">
-                        <Euro className="h-4 w-4 text-blue-600" />
-                        <span className="text-2xl font-bold text-blue-700">
-                          €{currentEvent.price}
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                          {language === 'lv' ? 'par personu' : 'per person'}
-                        </span>
-                      </div>
                     </div>
-                  </div>
-                  
-                  {/* Book Button */}
-                  <div className="mt-6">
-                    <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700">
-                      {language === 'lv' ? 'Rezervēt vietu' : 'Book Now'}
-                    </Button>
                   </div>
                 </CardContent>
               </div>
