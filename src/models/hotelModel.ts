@@ -98,3 +98,72 @@ export const roomsData: Room[] = [
     max_guests: 1
   }
 ];
+
+// Function to generate iCal content for all hotel bookings
+export const generateHotelICal = (): string => {
+  // This would typically fetch from a database, but for demo we'll use sample data
+  let ical = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Hotel Kandava//Booking Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Hotel Kandava - All Bookings
+X-WR-CALDESC:All hotel bookings at Hotel Kandava
+`;
+
+  // Sample bookings for demonstration
+  const sampleBookings = [
+    {
+      id: "booking1",
+      roomType: "Divvietīgs numurs (1 gulta)",
+      guestName: "Sample Guest 1",
+      checkIn: "2024-02-15",
+      checkOut: "2024-02-17"
+    },
+    {
+      id: "booking2", 
+      roomType: "Četrvietīgs numurs",
+      guestName: "Sample Guest 2",
+      checkIn: "2024-02-20",
+      checkOut: "2024-02-22"
+    }
+  ];
+
+  sampleBookings.forEach(booking => {
+    const startDate = new Date(booking.checkIn);
+    const endDate = new Date(booking.checkOut);
+    
+    // Format dates for iCal (YYYYMMDD)
+    const formatDate = (date: Date) => {
+      return date.toISOString().slice(0, 10).replace(/-/g, '');
+    };
+    
+    ical += `BEGIN:VEVENT
+UID:${booking.id}@hotelkandava.com
+DTSTART;VALUE=DATE:${formatDate(startDate)}
+DTEND;VALUE=DATE:${formatDate(endDate)}
+SUMMARY:${booking.roomType} - ${booking.guestName}
+DESCRIPTION:Hotel booking for ${booking.guestName}
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+`;
+  });
+
+  ical += `END:VCALENDAR`;
+  return ical;
+};
+
+// Function to download hotel iCal file
+export const downloadHotelICal = () => {
+  const icalContent = generateHotelICal();
+  const blob = new Blob([icalContent], { type: 'text/calendar;charset=utf-8' });
+  const url = window.URL.createObjectURL(blob);
+  
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'hotel_kandava_bookings.ics';
+  link.click();
+  
+  window.URL.revokeObjectURL(url);
+};

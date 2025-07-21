@@ -5,6 +5,7 @@ import { FoodMenuSection } from "@/components/hotel/FoodMenuSection";
 import { AboutPreview } from "@/components/hotel/AboutPreview";
 import { ContactPreview } from "@/components/hotel/ContactPreview";
 import { Navigation } from "@/components/hotel/Navigation";
+import { EventsPreview } from "@/components/hotel/EventsPreview";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <HeroSection />
       <RoomsPreview />
       <FoodMenuSection />
+      <EventsPreview />
       <AboutPreview />
       <ContactPreview />
     </div>
