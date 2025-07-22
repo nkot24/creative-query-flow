@@ -35,9 +35,9 @@ export const hotelData: Hotel = {
   name: "Viesnīca Kandava",
   address: "Sabiles iela 3, Kandava, LV-3120, Latvia",
   description: "Located in the historic center of Kandava, our charming hotel offers comfort and authentic Latvian hospitality in a beautifully restored building.",
-  phone: "+371 63182188",
-  email: "kandava.hotel@gmail.com",
-  amenities: ["Free Wi-Fi", "Private bathroom", "Restaurant", "Garden", "Parking", "24/7 Reception"],
+  phone: "(+371) 26406733",
+  email: "hotelkandava@gmail.com",
+  amenities: ["Free Wi-Fi", "Private bathroom", "Restaurant", "Terrace", "Parking", "Open every day 10:00–20:00, Fridays & Saturdays until 21:00"],
   images: ["/placeholder.svg"]
 };
 
@@ -48,7 +48,7 @@ export const roomsData: Room[] = [
     price_per_night: 70,
     features: ["24 m²","Skats uz pilsētu","Privāta vannas istaba","Plakanā ekrāna televizors","Bezmaksas bezvadu internets"],
     description: "Šajā divvietīgajā numurā (ar 1 gultu) ir privāta vannas istaba ar vannu, dušu un fēnu. Šī divvietīgā numura ērtību klāstā ir elektriskā tējkanna, apkure un plakanā ekrāna televizors ar satelīta kanāliem. No numura paveras skats uz pilsētu. Šajā uzturēšanās vietā ir 2 gultas.",
-    images: ["/lovable-uploads/images/662562698.jpg", "/lovable-uploads/images/663100348.jpg"],
+    images: ["/lovable-uploads/images/662562698.jpg", "/lovable-uploads/images/662563114 (1).jpg", "/lovable-uploads/images/663103048 (1).jpg","/lovable-uploads/images/483298900 (2).jpg"],
     max_guests: 3
   },
   {
@@ -57,7 +57,7 @@ export const roomsData: Room[] = [
     price_per_night: 70,
     features: ["14 m²","Skats uz iekšpagalmu","Privāta vannas istaba","Plakanā ekrāna televizors","Bezmaksas bezvadu internets"],
     description: "Šajā četrvietīgajā numurā ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba. Šajā uzturēšanās vietā ir 3 gultas.",
-    images: ["/lovable-uploads/images/663100348.jpg", "/lovable-uploads/images/663099965.jpg"],
+    images: ["/lovable-uploads/images/663100348.jpg"],
     max_guests: 4
   },
   
@@ -67,7 +67,7 @@ export const roomsData: Room[] = [
     price_per_night: 50,
     features: ["14 m²","Skats uz iekšpagalmu","Privāta vannas istaba","Plakanā ekrāna televizors","Bezmaksas bezvadu internets"],
     description: "Šajā divvietīgajā numurā (ar 1 gultu) ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba.",
-    images: ["/lovable-uploads/images/663099965.jpg", "/lovable-uploads/images/663099913.jpg"],
+    images: ["/lovable-uploads/images/663099965.jpg"],
     max_guests: 2
   },
   {
@@ -76,7 +76,7 @@ export const roomsData: Room[] = [
     price_per_night: 50,
     features: ["14 m²","Skats uz pilsētu","Privāta vannas istaba","Plakanā ekrāna televizors","Bezmaksas bezvadu internets"],
     description: "Šajā divvietīgajā numurā (ar 2 gultām) ir plakanā ekrāna televizors ar satelīta kanāliem un privāta vannas istaba.",
-    images: ["/lovable-uploads/images/663099913.jpg", "/lovable-uploads/images/663100529.jpg"],
+    images: ["/lovable-uploads/images/663099913.jpg"],
     max_guests: 2
   },
   {
@@ -85,7 +85,7 @@ export const roomsData: Room[] = [
     price_per_night: 55,
     features: ["15 m²","Balkons","Skats uz pilsētu","Privāta vannas istaba","Plakanā ekrāna televizors","Bezmaksas bezvadu internets"],
     description: "Šajā divvietīgajā numurā ir plakanā ekrāna televizors ar satelīttelevīzijas kanāliem, privāta vannas istaba un balkons ar skatu uz pilsētu. Numurā ir 1 gulta.",
-    images: ["/lovable-uploads/images/663100529.jpg", "/lovable-uploads/images/663102216.jpg"],
+    images: ["/lovable-uploads/images/663100529.jpg", "/lovable-uploads/images/663100984 (1).jpg"],
     max_guests: 2
   },
   {
@@ -94,7 +94,7 @@ export const roomsData: Room[] = [
     price_per_night: 45,
     features: ["12 m²","Skats uz iekšpagalmu","Privāta vannas istaba","Bezmaksas bezvadu internets"],
     description: "Šajā vienvietīgajā numurā ir apkure, kā arī privāta vannas istaba ar dušu. Šajā uzturēšanās vietā ir 1 gulta.",
-    images: ["/lovable-uploads/images/663102216.jpg", "/lovable-uploads/images/662562698.jpg"],
+    images: ["/lovable-uploads/images/663102216.jpg"],
     max_guests: 1
   }
 ];

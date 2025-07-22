@@ -1,16 +1,24 @@
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin, DollarSign } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface Event {
   id: string;
-  title: string;
+  title: {
+    lv: string;
+    en: string;
+  };
   date: string;
   time: string;
-  location: string;
-  description: string;
-  capacity: number;
+  location: {
+    lv: string;
+    en: string;
+  };
+  description: {
+    lv: string;
+    en: string;
+  };
   price: number;
   image: string;
 }
@@ -18,37 +26,24 @@ export interface Event {
 const eventsData: Event[] = [
   {
     id: "1",
-    title: "Kandavas kultūras vakars",
-    date: "2024-02-15",
-    time: "19:00",
-    location: "Viesnīcas restorāns",
-    description: "Tradicionālās latviešu mūzikas un deju vakars ar vietējiem māksliniekiem.",
-    capacity: 50,
-    price: 25,
-    image: "/placeholder.svg"
-  },
-  {
-    id: "2", 
-    title: "Vīna degustācija",
-    date: "2024-02-22",
-    time: "18:00",
-    location: "Viesnīcas pagrabā",
-    description: "Ekskluzīva vietējo vīnu degustācija ar someļē vadībā.",
-    capacity: 20,
-    price: 35,
-    image: "/placeholder.svg"
-  },
-  {
-    id: "3",
-    title: "Kulinārijas meistarklase",
-    date: "2024-03-01",
-    time: "16:00", 
-    location: "Restorāna virtuve",
-    description: "Iemācieties gatavot tradicionālos latviešu ēdienus ar mūsu šefpavāru.",
-    capacity: 15,
-    price: 45,
-    image: "/placeholder.svg"
+    title: {
+      lv: "Latviešu karaoke vakars",
+      en: "Latvian Karaoke Night"
+    },
+    date: "2025-08-08",
+    time: "22:00",
+    location: {
+      lv: "Kafejnīcas Kandava terasē",
+      en: "Cafe Kandava Terrace"
+    },
+    description: {
+      lv: "Latviešu mūzikas karaoke vakars. Nāc un izrādi savas dziedātprasmes!",
+      en: "Latvian music karaoke night. Come and show your singing skills!"
+    },
+    price: 5,
+    image: "/lovable-uploads/latviesu-karaokes-vakars(1).webp"
   }
+  
 ];
 
 // Function to generate iCal content for events
@@ -78,8 +73,9 @@ UID:${event.id}@hotelkandava.com
 DTSTART:${formatDateTime(eventDate)}
 DTEND:${formatDateTime(endDate)}
 SUMMARY:${event.title}
-DESCRIPTION:${event.description}\\nLocation: ${event.location}\\nCapacity: ${event.capacity} people\\nPrice: €${event.price}
+DESCRIPTION:${event.description}\\nLocation: ${event.location}\\nPrice: €${event.price}
 LOCATION:${event.location}, Hotel Kandava
+Price: €${event.price}
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
@@ -109,6 +105,7 @@ export const EventsPreview = () => {
 
   const translations = {
     title: language === "lv" ? "Gaidāmie pasākumi" : "Upcoming Events",
+    price: language === "lv" ? "Biļetes cena" : "Ticket price",
   };
 
   return (
@@ -134,20 +131,26 @@ export const EventsPreview = () => {
                       <div className="aspect-video md:aspect-square bg-muted">
                         <img 
                           src={event.image} 
-                          alt={event.title}
+                          alt={event.title[language]}
                           className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="p-6 flex flex-col justify-center">
-                        <CardTitle className="text-2xl text-amber-900 mb-2">{event.title}</CardTitle>
+                        <CardTitle className="text-2xl text-amber-900 mb-2">{event.title[language]}</CardTitle>
                         <CardDescription className="flex items-center gap-2 mb-4">
                           <Calendar className="h-4 w-4 text-amber-600" />
                           {new Date(event.date).toLocaleDateString(language === "lv" ? "lv-LV" : "en-US")} {event.time}
                         </CardDescription>
-                        <p className="text-muted-foreground mb-4">{event.description}</p>
+                        <p className="text-muted-foreground mb-4">{event.description[language]}</p>
                         <div className="flex items-center gap-2 text-sm">
                           <MapPin className="h-4 w-4 text-amber-600" />
-                          {event.location}
+                          {event.location[language]}
+                        </div>
+                        <div className="font-semibold flex items-center gap-1">
+                          <DollarSign className="h-4 w-4 text-amber-600" /> {/* Money icon */}
+                          {translations.price}: 
+                          <span className="text-lg">€</span>
+                          {event.price}
                         </div>
                       </div>
                     </div>

@@ -9,8 +9,8 @@ const amenityIcons = {
   "Free Wi-Fi": Wifi,
   "Parking": Car,
   "Restaurant": Coffee,
-  "Garden": Users,
-  "24/7 Reception": Clock,
+  "Terrace": Users,
+  "Open every day 10:00–20:00, Fridays & Saturdays until 21:00": Clock,
   "Private bathroom": Shield,
 };
 
@@ -19,9 +19,9 @@ const translateAmenity = (amenity, language) => {
     "Free Wi-Fi": { en: "Free Wi-Fi", lv: "Bezmaksas bezvadu internets" },
     "Private bathroom": { en: "Private bathroom", lv: "Privāta vannas istaba" },
     "Restaurant": { en: "Restaurant", lv: "Restorāns" },
-    "Garden": { en: "Garden", lv: "Dārzs" },
+    "Terrace": { en: "Terrace", lv: "Terase" },
     "Parking": { en: "Parking", lv: "Autostāvvieta" },
-    "24/7 Reception": { en: "24/7 Reception", lv: "24/7 Reģistratūra" },
+    "Open every day 10:00–20:00, Fridays & Saturdays until 21:00": { en: "Open every day 10:00–20:00, Fridays & Saturdays until 21:00", lv: "Atvērts katru dienu 10:00–20:00, piektdienās un sestdienās līdz 21:00." },
   };
   
   return translations[amenity]?.[language] || amenity;
@@ -69,8 +69,13 @@ const About = () => {
           </div>
 
           {/* Image Section */}
-          <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg h-64">
-            {/* You can put a hotel image here if needed */}
+          <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg h-96 flex justify-center overflow-hidden">
+            <img
+              src="/lovable-uploads/images/285253205_131734876172812_9018238262355775392_n (2).jpg"
+              alt="Hotel Kandava"
+              className="object-cover w-full h-full rounded-lg"
+              style={{ maxHeight: "24rem", width: "100%", height: "100%" }}
+            />
           </div>
         </div>
 

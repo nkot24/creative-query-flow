@@ -9,8 +9,8 @@ const amenityIcons: { [key: string]: any } = {
   "Free Wi-Fi": Wifi,
   "Parking": Car,
   "Restaurant": Coffee,
-  "Garden": Users,
-  "24/7 Reception": Clock,
+  "Terrace": Users,
+  "Open every day 10:00–20:00, Fridays & Saturdays until 21:00": Clock,
   "Private bathroom": Shield,
 };
 
@@ -19,9 +19,9 @@ const translateAmenity = (amenity: string, language: string) => {
     "Free Wi-Fi": { en: "Free Wi-Fi", lv: "Bezmaksas bezvadu internets" },
     "Private bathroom": { en: "Private bathroom", lv: "Privāta vannas istaba" },
     "Restaurant": { en: "Restaurant", lv: "Restorāns" },
-    "Garden": { en: "Garden", lv: "Dārzs" },
+    "Terrace": { en: "Terrace", lv: "Terase" },
     "Parking": { en: "Parking", lv: "Autostāvvieta" },
-    "24/7 Reception": { en: "24/7 Reception", lv: "24/7 Reģistratūra" },
+    "Open every day 10:00–20:00, Fridays & Saturdays until 21:00": { en: "Open every day 10:00–20:00, Fridays & Saturdays until 21:00", lv: "Atvērts katru dienu 10:00–20:00, piektdienās un sestdienās līdz 21:00." },
   };
   
   return translations[amenity]?.[language] || amenity;
