@@ -34,6 +34,8 @@ const Booking = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
+    
     console.log("Booking submitted!", formData);
 
     setShowAlert(true);
