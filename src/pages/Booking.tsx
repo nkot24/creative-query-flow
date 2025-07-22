@@ -40,6 +40,17 @@ const Booking = () => {
 
     setShowAlert(true);
 
+    // Clear form data after submission
+    setFormData({
+      roomType: "",
+      guestName: "",
+      guestEmail: "",
+      guestPhone: "",
+      checkIn: "",
+      checkOut: "",
+      guests: "1"
+    });
+
     toast({ 
       title: language === "lv" ? "Rezervācijas pieprasījums nosūtīts" : "Reservation request sent",
       description: language === "lv" 
