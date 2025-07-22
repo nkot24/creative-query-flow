@@ -1,6 +1,6 @@
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface Event {
@@ -109,19 +109,14 @@ export const EventsPreview = () => {
 
   const translations = {
     title: language === "lv" ? "Gaidāmie pasākumi" : "Upcoming Events",
-    viewAll: language === "lv" ? "Apskatīt visus" : "View All Events",
-    downloadCalendar: language === "lv" ? "Lejupielādēt kalendāru" : "Download Calendar",
-    capacity: language === "lv" ? "Vietas" : "Capacity",
-    price: language === "lv" ? "Cena" : "Price",
-    people: language === "lv" ? "cilvēki" : "people"
   };
 
   return (
-    <section className="py-16 bg-muted/30">
+    <section className="py-16 bg-gradient-to-b from-orange-50/20 to-amber-50/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{translations.title}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-amber-900">{translations.title}</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {language === "lv" 
               ? "Atklājiet īpašus notikumus un pieredzes, kas gaida jūs viesnīcā Kandava"
               : "Discover special events and experiences awaiting you at Hotel Kandava"
@@ -129,51 +124,40 @@ export const EventsPreview = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {eventsData.map((event) => (
-            <Card key={event.id} className="overflow-hidden">
-              <div className="aspect-video bg-muted">
-                <img 
-                  src={event.image} 
-                  alt={event.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="text-lg">{event.title}</CardTitle>
-                <CardDescription className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  {new Date(event.date).toLocaleDateString(language === "lv" ? "lv-LV" : "en-US")} {event.time}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">{event.description}</p>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    {event.location}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4" />
-                    {event.capacity} {translations.people}
-                  </div>
-                  <div className="font-semibold">
-                    {translations.price}: €{event.price}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center space-x-4">
-          <Button variant="outline" onClick={downloadEventsICal}>
-            <Calendar className="mr-2 h-4 w-4" />
-            {translations.downloadCalendar}
-          </Button>
-          <Button>
-            {translations.viewAll}
-          </Button>
+        <div className="max-w-5xl mx-auto">
+          <Carousel className="w-full">
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {eventsData.map((event) => (
+                <CarouselItem key={event.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <Card className="overflow-hidden border-amber-200 hover:shadow-lg transition-shadow h-full">
+                    <div className="aspect-video bg-muted">
+                      <img 
+                        src={event.image} 
+                        alt={event.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="text-lg text-amber-900">{event.title}</CardTitle>
+                      <CardDescription className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-amber-600" />
+                        {new Date(event.date).toLocaleDateString(language === "lv" ? "lv-LV" : "en-US")} {event.time}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4">{event.description}</p>
+                      <div className="flex items-center gap-2 text-sm">
+                        <MapPin className="h-4 w-4 text-amber-600" />
+                        {event.location}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2" />
+            <CarouselNext className="right-2" />
+          </Carousel>
         </div>
       </div>
     </section>

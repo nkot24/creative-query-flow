@@ -38,7 +38,12 @@ const Booking = () => {
 
     setShowAlert(true);
 
-    toast({ title: t("booking.success"), description: t("booking.successMessage") });
+    toast({ 
+      title: language === "lv" ? "Rezervācijas pieprasījums nosūtīts" : "Reservation request sent",
+      description: language === "lv" 
+        ? "Mēs ar jums sazināsimies pēc iespējas ātrāk par numuru pieejamību"
+        : "We will inform you as soon as possible about our room availability"
+    });
 
     // Send booking details via EmailJS
     emailjs.send(
