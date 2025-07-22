@@ -143,28 +143,32 @@ const Booking = () => {
         </div>
 
         {showAlert && (
-          <div className="mb-6 flex justify-center">
-            <Alert className="p-6 max-w-md w-full text-center relative">
-              <Info className="h-6 w-6 mr-2 inline-block align-middle" />
-              <AlertDescription className="text-lg font-semibold">
-                {language === "lv"
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 relative">
+              <button
+                onClick={handleAlertDismiss}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <div className="text-center">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">
+                  {language === "lv" ? "Ziņojums" : "Alert message"}
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  {language === "lv"
                     ? "Mēs ar jums sazināsimies pēc iespējas ātrāk, lai informētu par numuru pieejamību."
                     : "We will contact you as soon as possible and inform you about room availability."}
-              </AlertDescription>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="absolute top-2 right-2 h-6 w-6 p-0"
-                onClick={handleAlertDismiss}
-              >
-                <X className="h-4 w-4" />
-              </Button>
-              <div className="mt-4">
-                <Button onClick={handleAlertDismiss} size="sm">
-                  OK
+                </p>
+                <Button 
+                  onClick={handleAlertDismiss}
+                  className="px-6 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  variant="outline"
+                >
+                  Ok
                 </Button>
               </div>
-            </Alert>
+            </div>
           </div>
         )}
 

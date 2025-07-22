@@ -124,33 +124,33 @@ export const EventsPreview = () => {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <Carousel className="w-full">
-            <CarouselContent className="-ml-2 md:-ml-4">
+            <CarouselContent>
               {eventsData.map((event) => (
-                <CarouselItem key={event.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="overflow-hidden border-amber-200 hover:shadow-lg transition-shadow h-full">
-                    <div className="aspect-video bg-muted">
-                      <img 
-                        src={event.image} 
-                        alt={event.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <CardHeader>
-                      <CardTitle className="text-lg text-amber-900">{event.title}</CardTitle>
-                      <CardDescription className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-amber-600" />
-                        {new Date(event.date).toLocaleDateString(language === "lv" ? "lv-LV" : "en-US")} {event.time}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-4">{event.description}</p>
-                      <div className="flex items-center gap-2 text-sm">
-                        <MapPin className="h-4 w-4 text-amber-600" />
-                        {event.location}
+                <CarouselItem key={event.id}>
+                  <Card className="overflow-hidden border-amber-200 hover:shadow-lg transition-shadow">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="aspect-video md:aspect-square bg-muted">
+                        <img 
+                          src={event.image} 
+                          alt={event.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                    </CardContent>
+                      <div className="p-6 flex flex-col justify-center">
+                        <CardTitle className="text-2xl text-amber-900 mb-2">{event.title}</CardTitle>
+                        <CardDescription className="flex items-center gap-2 mb-4">
+                          <Calendar className="h-4 w-4 text-amber-600" />
+                          {new Date(event.date).toLocaleDateString(language === "lv" ? "lv-LV" : "en-US")} {event.time}
+                        </CardDescription>
+                        <p className="text-muted-foreground mb-4">{event.description}</p>
+                        <div className="flex items-center gap-2 text-sm">
+                          <MapPin className="h-4 w-4 text-amber-600" />
+                          {event.location}
+                        </div>
+                      </div>
+                    </div>
                   </Card>
                 </CarouselItem>
               ))}
