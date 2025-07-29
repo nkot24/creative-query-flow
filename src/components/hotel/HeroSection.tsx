@@ -1,6 +1,5 @@
 
 import { Button } from "@/components/ui/button";
-import { hotelData } from "@/models/hotelModel";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export const HeroSection = () => {
