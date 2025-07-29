@@ -35,7 +35,7 @@ export const HeroSection = () => {
               className="bg-amber-600 hover:bg-amber-700 text-white border-none"
             >
               <a href={bookingLink} target="_blank" rel="noopener noreferrer">
-                {t('nav.bookNow')}
+                {t('nav.bookingCom')}
               </a>
             </Button>
             
