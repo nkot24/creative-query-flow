@@ -16,7 +16,7 @@ const translations = {
     'nav.menu': 'Menu',
     'nav.about': 'About',
     'nav.contact': 'Contact',
-    'nav.bookNow': 'Book Now',
+    'nav.bookNow': 'Book in Booking',
     
     // Home page
     'home.hero.title': 'Welcome to Viesnīca Kandava',
@@ -135,7 +135,7 @@ const translations = {
     'nav.menu': 'Ēdienkarte',
     'nav.about': 'Par mums',
     'nav.contact': 'Kontakti',
-    'nav.bookNow': 'Rezervēt',
+    'nav.bookNow': 'Rezervēt Booking.com',
     
     // Home page
     'home.hero.title': 'Laipni lūdzam Viesnīcā Kandava',
