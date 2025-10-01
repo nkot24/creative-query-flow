@@ -1,20 +1,32 @@
 name: Deploy to cPanel
+
 on:
   push:
     branches: [ main ]
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install deps
+        run: npm ci
 
+      - name: Build
+        run: npm run build
+
+      # Upload ONLY the built files in dist/ to your hosting folder.
+      # The trailing slashes are required. We also wipe the target
+      # first, but keep your .htaccess so SPA routing survives.
       - name: Upload via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -22,5 +34,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          local-dir: dist/                    # <-- trailing slash
-          server-dir: public_html/hotelkandava.lv/   # <-- trailing slash
+          local-dir: dist/
+          server-dir: public_html/hotelkandava.lv/
+          dangerous-clean-slate: true
+          exclude: |
+            .htaccess
