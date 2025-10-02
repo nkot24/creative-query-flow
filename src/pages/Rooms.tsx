@@ -148,9 +148,13 @@ const Rooms = () => {
 
                 {/* Button anchored at bottom */}
                 <Button asChild className="w-full">
-                    <Link to="/booking" state={{ selectedRoom: room }}>
-                         {t("rooms.bookRoom")} 
-                    </Link>
+                    <a 
+                      href="https://www.booking.com/hotel/lv/viesnica-kandava.lv.html?aid=347181&sid=f1ceadeecc09feb1b4383ff863772be3&dest_id=-3209286&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srepoch=1749292056&srpvid=f10c49f942a907d2&type=total&ucfs=1&activeTab=main#RD1058138101" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      {t("nav.bookingCom")}
+                    </a>
                 </Button>
 
               </CardContent>
