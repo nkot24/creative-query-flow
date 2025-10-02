@@ -1,33 +1,18 @@
 name: Deploy to cPanel
-
 on:
   push:
     branches: [ main ]
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build production
-        run: npm run build
-
-      # Deploy ONLY the built files. Requires GitHub Secrets:
-      # FTP_SERVER = ftp.abas.lv
-      # FTP_USERNAME = your FTP user rooted at /home2/abaslv/public_html/hotelkandava.lv
-      # FTP_PASSWORD = that user's password
+      - run: npm ci
+      - run: npm run build
       - name: Upload via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -35,8 +20,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          local-dir: dist/              # must end with /
-          server-dir: ./                # FTP home should be public_html/hotelkandava.lv
-          dangerous-clean-slate: true   # wipe target before upload
+          local-dir: dist/
+          server-dir: ./
+          dangerous-clean-slate: true
           exclude: |
-            .htaccess                   # keep SPA routing file on the server
+            .htaccess
