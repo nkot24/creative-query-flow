@@ -5,6 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { roomsData } from "@/models/hotelModel";
 import { Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 
 export const RoomsPreview = () => {
   const { t, language } = useLanguage();
@@ -142,9 +143,9 @@ export const RoomsPreview = () => {
         </div>
 
         <div className="text-center">
-          <Button  size="lg" asChild className="bg-amber-600 hover:bg-amber-700">
-              <a href="/rooms">{t('home.rooms.viewAll')}</a>
-            </Button>
+          <Button size="lg" asChild className="bg-amber-600 hover:bg-amber-700">
+            <Link to="/rooms">{t('home.rooms.viewAll')}</Link>
+          </Button>
         </div>
       </div>
     </section>

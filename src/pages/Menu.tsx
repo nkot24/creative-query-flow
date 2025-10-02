@@ -1,6 +1,8 @@
 
 import { Navigation } from "@/components/hotel/Navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
+
 
 const Menu = () => {
   const { t } = useLanguage();
@@ -258,12 +260,12 @@ const Menu = () => {
             >
               {t('menu.callRestaurant')}
             </a>
-            <a 
-              href="/contact" 
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center px-6 py-3 border border-amber-600 text-amber-600 rounded-lg hover:bg-amber-50 transition-colors"
             >
               {t('menu.contactUs')}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

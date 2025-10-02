@@ -16,7 +16,7 @@ const translations = {
     'nav.menu': 'Menu',
     'nav.about': 'About',
     'nav.contact': 'Contact',
-    'nav.bookNow': 'Book Now',
+   
     'nav.bookingCom': 'Book in Booking',
     
     // Home page
@@ -136,7 +136,7 @@ const translations = {
     'nav.menu': 'Ēdienkarte',
     'nav.about': 'Par mums',
     'nav.contact': 'Kontakti',
-    'nav.bookNow': 'Rezervēt',
+   
     'nav.bookingCom': 'Rezervēt Booking.com',
     
     // Home page
