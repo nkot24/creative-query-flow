@@ -307,8 +307,8 @@ const Menu = () => {
             <div className="space-y-4">
               <div className="flex justify-between items-start">
                 <div>
-                  <h4 className="font-medium text-foreground">Frī un vistas gaļas naģeti ar svaigu tomātu un gurķi / <br />Fries and chicken nuggets with tomato and cucumber</h4>
-                  <p className="text-sm text-muted-foreground">(frī kartupeļi, vistas gaļas naģeti, tomāts, gurķis, garšvielas)</p>
+                  <h4 className="font-medium text-foreground">Frī un vistas gaļas nageti ar svaigu tomātu un gurķi / <br />Fries and chicken nuggets with tomato and cucumber</h4>
+                  <p className="text-sm text-muted-foreground">(frī kartupeļi, vistas gaļas nageti, tomāts, gurķis, garšvielas)</p>
                   <p className="text-sm text-muted-foreground">(fries, chicken nuggets, tomato, cucumber, spices)</p>
                 </div>
                 <span className="text-amber-700 font-semibold">€5.50</span>
@@ -505,7 +505,7 @@ const Menu = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="tel:+37163207040" 
+              href="tel:+37126406733" 
               className="inline-flex items-center justify-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
             >
               {t('menu.callRestaurant')}
