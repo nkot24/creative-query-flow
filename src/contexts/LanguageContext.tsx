@@ -47,8 +47,8 @@ const translations = {
     'home.contact.contactUs': 'Contacts',
     
     // Menu page
-    'menu.title': 'Restaurant Menu',
-    'menu.subtitle': 'Discover our delicious selection of local and international cuisine',
+    'menu.title': 'Menu',
+    'menu.subtitle': 'Caffe menu',
     'menu.contact': 'For reservations and special dietary requirements, please contact us',
     'menu.callRestaurant': 'Call Restaurant',
     'menu.contactUs': 'Contact Us',
@@ -167,8 +167,8 @@ const translations = {
     'home.contact.contactUs': 'Kontakti',
     
     // Menu page
-    'menu.title': 'Restorāna Ēdienkarte',
-    'menu.subtitle': 'Atklājiet mūsu garšīgo vietējo un starptautisko ēdienu izvēli',
+    'menu.title': 'Ēdienkarte',
+    'menu.subtitle': 'Kafejnīcas ēdienkarte',
     'menu.contact': 'Rezervācijām un īpašām diētas prasībām, lūdzu, sazinieties ar mums',
     'menu.callRestaurant': 'Zvanīt restorānam',
     'menu.contactUs': 'Sazināties',
