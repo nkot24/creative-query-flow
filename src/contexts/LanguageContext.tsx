@@ -140,7 +140,7 @@ const translations = {
     'nav.bookingCom': 'Rezervēt Booking.com',
     
     // Home page
-    'home.hero.title': 'Laipni lūdzam Viesnīcā Kandava',
+    'home.hero.title': 'Laipni lūgti Viesnīcā Kandava',
     'home.hero.subtitle': 'Izbaudiet komfortu un viesmīlību Kandavas sirdī',
     'home.rooms.title': 'Mūsu Istabas',
     'home.rooms.subtitle': 'Ērtas naktsmītnes katram ceļotājam',
